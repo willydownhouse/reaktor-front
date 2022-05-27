@@ -5,19 +5,12 @@ import MainPage from "./MainPage";
 import PageNotFound from "./PageNotFound";
 import Notification from "./Notification";
 import { IPackage } from "../interfaces/package";
-import { useEffect } from "react";
 
 function App() {
   const [packages, setPackages] = useState<IPackage[]>([]);
   const [notification, setNotification] = useState<string>("");
 
-  useEffect(() => {
-    const data = localStorage.getItem("data");
-
-    if (!data) return;
-
-    setPackages(JSON.parse(data));
-  }, []);
+  console.log(process.env.NODE_ENV);
 
   return (
     <div className="container">
@@ -38,7 +31,12 @@ function App() {
             path="/:package"
             element={<SinglePackagePage packages={packages} />}
           />
-          <Route path="*" element={<PageNotFound />} />
+          <Route
+            path="*"
+            element={
+              <PageNotFound message={`There is nothing here, sorry 😎`} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

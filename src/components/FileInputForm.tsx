@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { IPackage } from "../interfaces/package";
 
-import { parseFileToPackagesArray } from "../utils/parseFile";
+import { handleParsingRequest } from "../utils/handleParsingRequest";
 
 type FileInputProps = {
   setPackages: (val: IPackage[]) => void;
@@ -17,7 +17,7 @@ function FileInputForm({ setPackages, setNotification }: FileInputProps) {
     const data = new FormData();
     data.append("upload_file", file as Blob);
 
-    parseFileToPackagesArray(data, setPackages, setNotification);
+    handleParsingRequest(data, setPackages, setNotification);
   };
 
   const handleChange = (files: FileList | null) => {
@@ -34,14 +34,20 @@ function FileInputForm({ setPackages, setNotification }: FileInputProps) {
             Choose a toml file
           </label>
           <input
+            id="file"
             onChange={(e) => handleChange(e.target.files)}
             name="toml"
             type={"file"}
-            accept=".toml"
+            accept=".toml, .lock"
             className="form-control"
           />
         </div>
-        <button disabled={!file} className="btn btn-primary" type="submit">
+        <button
+          id="submit"
+          disabled={!file}
+          className="btn btn-primary"
+          type="submit"
+        >
           Parse
         </button>
       </form>

@@ -1,7 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function PageNotFound() {
-  return <div>{`There is nothing here sorry 😎`}</div>;
+type PageNotFound = {
+  message: string;
+};
+
+function PageNotFound({ message }: PageNotFound) {
+  return (
+    <div>
+      <p>{message}</p>
+      <Link to={"/"}>Home</Link>
+    </div>
+  );
 }
 
 export default PageNotFound;

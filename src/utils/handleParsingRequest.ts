@@ -1,7 +1,7 @@
 import parserApi from "../api/parserApi";
 import { IPackage } from "../interfaces/package";
 
-export function parseFileToPackagesArray(
+export function handleParsingRequest(
   data: FormData,
   setPackages: (val: IPackage[]) => void,
   setNotification: (val: string) => void
@@ -11,9 +11,8 @@ export function parseFileToPackagesArray(
     .then((res) => {
       const { data } = res.data;
 
-      console.log(data);
       setPackages(data);
-      localStorage.setItem("data", JSON.stringify(data));
+      //localStorage.setItem("data", JSON.stringify(data));
     })
     .catch((err) => {
       if (err.name === "AxiosError") {

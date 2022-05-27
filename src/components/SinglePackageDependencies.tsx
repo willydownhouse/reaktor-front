@@ -9,10 +9,8 @@ type Props = {
 
 function SinglePackageDependencies({ dependencies, packages }: Props) {
   if (dependencies?.length === 0 || !dependencies) {
-    return <p>No dependencies</p>;
+    return <p className="fw-bold">No dependencies</p>;
   }
-
-  console.log();
 
   return (
     <div className="mb-5">

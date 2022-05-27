@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { IPackage } from "../interfaces/package";
 import FileInputForm from "./FileInputForm";
 import PackagesList from "./PackagesList";
@@ -11,12 +10,9 @@ type MainPageProps = {
 };
 
 function MainPage({ packages, setPackages, setNotification }: MainPageProps) {
-  useEffect(() => {
-    console.log("MAIN PAGE component, packages:", packages);
-  });
   return (
     <>
-      <h1 className="mb-5 mt-3">Toml file parser</h1>
+      <h1 className="mb-5 mt-3">file parser</h1>
       <FileInputForm
         setPackages={setPackages}
         setNotification={setNotification}
